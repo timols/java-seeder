@@ -1,0 +1,27 @@
+# Idea project settings
+.idea/artifacts
+.idea/copyright
+.idea/dictionaries
+.idea/libraries
+.idea/scopes
+.idea/.name
+.idea/compiler.xml
+.idea/jenkinsSettings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/uiDesigner.xml
+.idea/workspace.xml
+.idea/dataSources.ids
+.idea/dataSources.xml
+*.iml
+
+clientapp/test-results.xml
+atlassian-ide-plugin.xml
+
+# Java stuff
+target
+logs
+*.log
+*.log.zip
+
+.DS_Store
