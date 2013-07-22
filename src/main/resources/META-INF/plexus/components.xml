@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<component-set>
+    <components>
+        <component>
+            <role>org.apache.maven.lifecycle.mapping.LifecycleMapping</role>
+            <role-hint>seed</role-hint>
+            <implementation>
+                org.apache.maven.lifecycle.mapping.DefaultLifecycleMapping
+            </implementation>
+            <configuration>
+                <phases>
+                    <seed>
+                        com.github:seeder:${project.version}:seed
+                    </seed>
+                </phases>
+            </configuration>
+        </component>
+        <component>
+            <role>org.apache.maven.lifecycle.Lifecycle</role>
+            <implementation>org.apache.maven.lifecycle.Lifecycle</implementation>
+            <role-hint>seed</role-hint>
+            <configuration>
+                <id>seed</id>
+                <phases>
+                    <phase>seed</phase>
+                </phases>
+                <default-phases>
+                    <seed>
+                        com.github:seeder:${project.version}:seed
+                    </seed>
+                </default-phases>
+            </configuration>
+        </component>
+    </components>
+</component-set>
