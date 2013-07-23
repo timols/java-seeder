@@ -32,13 +32,34 @@ to seed the database using java as opposed to sql. This is a perfect opportunity
 </build>
 ```
 
-  2. Define a module that in `YOUR STEPS PACKAGE` that sets up all of your Guice bindings
+  2. Define a module in `YOUR STEPS PACKAGE` that sets up all of your Guice bindings
   3. In the same package as the module, create classes that implement the `SeedStep` interface and do your actual work
   4. Annotate your step classes with the `@Step(number = "STEP NUMBER")` annotation to define the order in which the steps should run.
-  4a. It may be helpful to name your classes either entirely or with the prefix `StepN` where N is the step number. This isn't necessary but makes it easier to keep track of order using filenames.
-  5. Run `mvn seeder:seed` from the root fo the project to perform the steps
+    1. It may be helpful to name your classes either entirely or with the prefix `StepN` where N is the step number. This isn't necessary but makes it easier to keep track of order using filenames.
+  5. Run `mvn seeder:seed` from the root of the project to perform the steps
 
 You can see an example implementation [here](src/test/java/com/example).
+
+## Troubleshooting
+
+You might come across errors about missing classes, such as `A required class was missing while executing com.github.timols:seeder:0.1.0:seed: com/foo/FooClass;`. To resolve this issue, add
+the library that contains the relevant type as a plugin dependency. I.e.
+
+```xml
+<plugin>
+    <artifactId>seeder</artifactId>
+    <configuration>
+       <stepsPackage>YOUR STEPS PACKAGE, e.g. com.myapp.steps</stepsPackage>
+    </configuration>
+    <dependencies>
+        <dependency>
+            <groupId>com.foo</groupId>
+            <artifactId>bar</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>
+</plugin>
+```
 
 ## Contributing
 
