@@ -1,8 +1,8 @@
 package com.github.timols.seeder;
 
-import com.google.inject.*;
 import com.github.timols.seeder.annotation.Step;
 import com.github.timols.seeder.step.SeedStep;
+import com.google.inject.*;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,9 +33,9 @@ public class Seeder {
      *
      * @param stepPackageName  The package that contains the SeedSteps
      */
-    public Seeder(String stepPackageName) {
+    public Seeder(String stepPackageName, Reflections reflections) {
         this.stepPackageName = stepPackageName;
-        this.reflections = new Reflections(stepPackageName);
+        this.reflections = reflections;
         this.injector = createInjector();
     }
 
@@ -80,7 +80,6 @@ public class Seeder {
                 instances.add(module);
             } catch (ReflectiveOperationException e) {
                 logger.error(e.getCause().getMessage(), e);
-
             }
         }
         return instances;
